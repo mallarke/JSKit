@@ -14,6 +14,23 @@
 
 @implementation ViewController
 
+- (id)init
+{
+    self = [super init];
+    
+    if(self)
+    {
+        self.title = @"Sample App";
+    }
+    
+    return self;
+}
+
+- (void)loadView
+{
+    self.view = [JSView new];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

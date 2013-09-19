@@ -1,13 +1,11 @@
 //
-//  ViewController.h
+//  JSKit.h
 //  JSKit
 //
 //  Created by mallarke on 9/19/13.
 //  Copyright (c) 2013 shadow coding. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface ViewController : JSViewController
-
-@end
+#import "JSAppDelegate.h"
+#import "JSViewController.h"
+#import "JSView.h"

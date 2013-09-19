@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 25A7FBCD17EB09ED0018C239 /* Build configuration list for PBXAggregateTarget "JSKitFramework" */;
 			buildPhases = (
-				25A7FBD017EB0A070018C239 /* ShellScript */,
+				25A7FBD017EB0A070018C239 /* Run Script */,
 			);
 			dependencies = (
 			);
@@ -23,6 +23,12 @@
 /* Begin PBXBuildFile section */
 		2560466417EB1019008C91F7 /* JSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560466217EB1019008C91F7 /* JSViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2560466517EB1019008C91F7 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560466317EB1019008C91F7 /* JSViewController.m */; };
+		2560466617EB1306008C91F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7A17EB08950018C239 /* UIKit.framework */; };
+		2560466717EB130F008C91F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7C17EB08950018C239 /* Foundation.framework */; };
+		2560466B17EB136F008C91F7 /* JSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560466A17EB136F008C91F7 /* JSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2560466F17EB14D5008C91F7 /* JSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2560466817EB1335008C91F7 /* JSKit.framework */; };
+		2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560467217EB1542008C91F7 /* JSAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2560467517EB1542008C91F7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560467317EB1542008C91F7 /* JSAppDelegate.m */; };
 		25A7FB7B17EB08950018C239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7A17EB08950018C239 /* UIKit.framework */; };
 		25A7FB7D17EB08950018C239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7C17EB08950018C239 /* Foundation.framework */; };
 		25A7FB7F17EB08950018C239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7E17EB08950018C239 /* CoreGraphics.framework */; };
@@ -33,15 +39,28 @@
 		25A7FBB817EB09370018C239 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A7FBAF17EB09370018C239 /* Default-568h@2x.png */; };
 		25A7FBB917EB09370018C239 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A7FBB017EB09370018C239 /* Default@2x.png */; };
 		25A7FBBA17EB09370018C239 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A7FBB217EB09370018C239 /* Default.png */; };
-		25A7FBC117EB09810018C239 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FBC017EB09810018C239 /* CoreFoundation.framework */; };
 		25A7FBC717EB09810018C239 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25A7FBC517EB09810018C239 /* InfoPlist.strings */; };
 		25A7FBD317EB0A4B0018C239 /* JSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A7FBD217EB0A4B0018C239 /* JSView.m */; };
 		25A7FBD517EB0A6A0018C239 /* JSView.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A7FBD117EB0A4B0018C239 /* JSView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2560467017EB14DC008C91F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25A7FB6F17EB08950018C239 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 25A7FBCC17EB09ED0018C239;
+			remoteInfo = JSKitFramework;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2560466217EB1019008C91F7 /* JSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
 		2560466317EB1019008C91F7 /* JSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
+		2560466817EB1335008C91F7 /* JSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSKit.framework; path = Products/JSKit.framework; sourceTree = "<group>"; };
+		2560466A17EB136F008C91F7 /* JSKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSKit.h; sourceTree = "<group>"; };
+		2560467217EB1542008C91F7 /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
+		2560467317EB1542008C91F7 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
 		25A7FB7717EB08950018C239 /* JSKitSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSKitSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A7FB7A17EB08950018C239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25A7FB7C17EB08950018C239 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,7 +77,6 @@
 		25A7FBB017EB09370018C239 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		25A7FBB217EB09370018C239 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		25A7FBBF17EB09810018C239 /* JSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25A7FBC017EB09810018C239 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		25A7FBC417EB09810018C239 /* JSKitBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSKitBundle-Info.plist"; sourceTree = "<group>"; };
 		25A7FBC617EB09810018C239 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		25A7FBC817EB09810018C239 /* JSKitBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSKitBundle-Prefix.pch"; sourceTree = "<group>"; };
@@ -71,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2560466F17EB14D5008C91F7 /* JSKit.framework in Frameworks */,
 				25A7FB7B17EB08950018C239 /* UIKit.framework in Frameworks */,
 				25A7FB7D17EB08950018C239 /* Foundation.framework in Frameworks */,
 				25A7FB7F17EB08950018C239 /* CoreGraphics.framework in Frameworks */,
@@ -81,7 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25A7FBC117EB09810018C239 /* CoreFoundation.framework in Frameworks */,
+				2560466717EB130F008C91F7 /* Foundation.framework in Frameworks */,
+				2560466617EB1306008C91F7 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,10 +131,10 @@
 		25A7FB7917EB08950018C239 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2560466817EB1335008C91F7 /* JSKit.framework */,
 				25A7FB7A17EB08950018C239 /* UIKit.framework */,
 				25A7FB7C17EB08950018C239 /* Foundation.framework */,
 				25A7FB7E17EB08950018C239 /* CoreGraphics.framework */,
-				25A7FBC017EB09810018C239 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +142,7 @@
 		25A7FB9D17EB09370018C239 /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				2560466A17EB136F008C91F7 /* JSKit.h */,
 				25A7FB9F17EB09370018C239 /* base */,
 				25A7FB9E17EB09370018C239 /* asyncTask */,
 				25A7FBA017EB09370018C239 /* cacher */,
@@ -139,6 +160,8 @@
 		25A7FB9F17EB09370018C239 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				2560467217EB1542008C91F7 /* JSAppDelegate.h */,
+				2560467317EB1542008C91F7 /* JSAppDelegate.m */,
 				2560466217EB1019008C91F7 /* JSViewController.h */,
 				2560466317EB1019008C91F7 /* JSViewController.m */,
 				25A7FBD117EB0A4B0018C239 /* JSView.h */,
@@ -239,6 +262,8 @@
 			files = (
 				2560466417EB1019008C91F7 /* JSViewController.h in Headers */,
 				25A7FBD517EB0A6A0018C239 /* JSView.h in Headers */,
+				2560466B17EB136F008C91F7 /* JSKit.h in Headers */,
+				2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +281,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2560467117EB14DC008C91F7 /* PBXTargetDependency */,
 			);
 			name = JSKitSampleApp;
 			productName = JSKit;
@@ -331,13 +357,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25A7FBD017EB0A070018C239 /* ShellScript */ = {
+		25A7FBD017EB0A070018C239 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,10 +390,19 @@
 			files = (
 				25A7FBD317EB0A4B0018C239 /* JSView.m in Sources */,
 				2560466517EB1019008C91F7 /* JSViewController.m in Sources */,
+				2560467517EB1542008C91F7 /* JSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2560467117EB14DC008C91F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 25A7FBCC17EB09ED0018C239 /* JSKitFramework */;
+			targetProxy = 2560467017EB14DC008C91F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		25A7FBA817EB09370018C239 /* InfoPlist.strings */ = {
@@ -447,6 +483,10 @@
 		25A7FB9B17EB08950018C239 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Products\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sampleApp/core/JSKit-Prefix.pch";
 				INFOPLIST_FILE = "sampleApp/core/JSKit-Info.plist";
@@ -458,6 +498,10 @@
 		25A7FB9C17EB08950018C239 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Products\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sampleApp/core/JSKit-Prefix.pch";
 				INFOPLIST_FILE = "sampleApp/core/JSKit-Info.plist";
@@ -471,6 +515,10 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Products\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JSKitBundle/JSKitBundle-Prefix.pch";
@@ -491,6 +539,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Products\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JSKitBundle/JSKitBundle-Prefix.pch";

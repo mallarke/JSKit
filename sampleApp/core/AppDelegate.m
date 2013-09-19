@@ -14,12 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    return YES;
+    [super application:application didFinishLaunchingWithOptions:launchOptions];
+
+    return true;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -47,6 +44,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Protected methods -
+
+- (BOOL)usesNavigationController
+{
+    return true;
+}
+
+- (UIViewController *)rootViewController
+{
+    return [ViewController new];
 }
 
 @end
