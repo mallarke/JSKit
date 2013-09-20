@@ -22,7 +22,7 @@
 
 - (id)init
 {
-    [NSException raise:@"Invalid method" format:@"Use - (void)initWithKey:isConcurrent: instead"];
+    [NSException raise:@"Invalid method" format:@"Use - (void)initWithKey:numberOfThreads: instead"];
     return nil;
 }
 
