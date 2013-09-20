@@ -27,7 +27,6 @@
 		2560466F17EB14D5008C91F7 /* JSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2560466817EB1335008C91F7 /* JSKit.framework */; };
 		2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560467217EB1542008C91F7 /* JSAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2560467517EB1542008C91F7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560467317EB1542008C91F7 /* JSAppDelegate.m */; };
-		2560467817EB1F75008C91F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560467717EB1F75008C91F7 /* ViewController.m */; };
 		25A7FB7B17EB08950018C239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7A17EB08950018C239 /* UIKit.framework */; };
 		25A7FB7D17EB08950018C239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7C17EB08950018C239 /* Foundation.framework */; };
 		25A7FB7F17EB08950018C239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7E17EB08950018C239 /* CoreGraphics.framework */; };
@@ -47,7 +46,8 @@
 		25B8E86D17EC859B00826258 /* JSAsyncTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E86B17EC859B00826258 /* JSAsyncTaskManager.m */; };
 		25B8E87017EC862600826258 /* JSAsyncTaskQueueInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E86E17EC862600826258 /* JSAsyncTaskQueueInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		25B8E87117EC862600826258 /* JSAsyncTaskQueueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E86F17EC862600826258 /* JSAsyncTaskQueueInfo.m */; };
-		25B8E87417EC976800826258 /* AsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87317EC976800826258 /* AsyncTask.m */; };
+		25B8E87A17EC9C6400826258 /* AsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87717EC9C6400826258 /* AsyncTask.m */; };
+		25B8E87B17EC9C6400826258 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87917EC9C6400826258 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,6 @@
 		2560466A17EB136F008C91F7 /* JSKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSKit.h; sourceTree = "<group>"; };
 		2560467217EB1542008C91F7 /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
 		2560467317EB1542008C91F7 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
-		2560467617EB1F75008C91F7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = framework/base/ViewController.h; sourceTree = SOURCE_ROOT; };
-		2560467717EB1F75008C91F7 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = framework/base/ViewController.m; sourceTree = SOURCE_ROOT; };
 		25A7FB7717EB08950018C239 /* JSKitSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSKitSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A7FB7A17EB08950018C239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25A7FB7C17EB08950018C239 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,8 +93,10 @@
 		25B8E86B17EC859B00826258 /* JSAsyncTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAsyncTaskManager.m; sourceTree = "<group>"; };
 		25B8E86E17EC862600826258 /* JSAsyncTaskQueueInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAsyncTaskQueueInfo.h; sourceTree = "<group>"; };
 		25B8E86F17EC862600826258 /* JSAsyncTaskQueueInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAsyncTaskQueueInfo.m; sourceTree = "<group>"; };
-		25B8E87217EC976800826258 /* AsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncTask.h; sourceTree = SOURCE_ROOT; };
-		25B8E87317EC976800826258 /* AsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncTask.m; sourceTree = SOURCE_ROOT; };
+		25B8E87617EC9C6400826258 /* AsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncTask.h; sourceTree = "<group>"; };
+		25B8E87717EC9C6400826258 /* AsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncTask.m; sourceTree = "<group>"; };
+		25B8E87817EC9C6400826258 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		25B8E87917EC9C6400826258 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,22 +200,11 @@
 		25A7FBA117EB09370018C239 /* sampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				25A7FBA217EB09370018C239 /* classes */,
+				25B8E87517EC9C6400826258 /* classes */,
 				25A7FBA517EB09370018C239 /* core */,
 				25A7FBAD17EB09370018C239 /* res */,
 			);
 			path = sampleApp;
-			sourceTree = "<group>";
-		};
-		25A7FBA217EB09370018C239 /* classes */ = {
-			isa = PBXGroup;
-			children = (
-				2560467617EB1F75008C91F7 /* ViewController.h */,
-				2560467717EB1F75008C91F7 /* ViewController.m */,
-				25B8E87217EC976800826258 /* AsyncTask.h */,
-				25B8E87317EC976800826258 /* AsyncTask.m */,
-			);
-			path = classes;
 			sourceTree = "<group>";
 		};
 		25A7FBA517EB09370018C239 /* core */ = {
@@ -273,6 +262,17 @@
 				25A7FBC817EB09810018C239 /* JSKitBundle-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25B8E87517EC9C6400826258 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				25B8E87817EC9C6400826258 /* ViewController.h */,
+				25B8E87917EC9C6400826258 /* ViewController.m */,
+				25B8E87617EC9C6400826258 /* AsyncTask.h */,
+				25B8E87717EC9C6400826258 /* AsyncTask.m */,
+			);
+			path = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,9 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A7FBB417EB09370018C239 /* AppDelegate.m in Sources */,
+				25B8E87A17EC9C6400826258 /* AsyncTask.m in Sources */,
+				25B8E87B17EC9C6400826258 /* ViewController.m in Sources */,
 				25A7FBB717EB09370018C239 /* main.m in Sources */,
-				2560467817EB1F75008C91F7 /* ViewController.m in Sources */,
-				25B8E87417EC976800826258 /* AsyncTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
