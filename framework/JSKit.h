@@ -9,3 +9,5 @@
 #import "JSAppDelegate.h"
 #import "JSViewController.h"
 #import "JSView.h"
+
+#import "JSAsyncTask.h"

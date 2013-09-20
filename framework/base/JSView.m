@@ -8,6 +8,20 @@
 
 #import "JSView.h"
 
+CG_INLINE void _log(NSString *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    
+    NSString *string = [[NSString alloc] initWithFormat:format arguments:args];
+    
+    va_end(args);
+    
+    NSLog(@"%@", string);
+};
+
+#define Log(__format__, ...) _log(__format__, ##__VA_ARGS__)
+
 #pragma mark - JSView extension -
 
 @interface JSView()

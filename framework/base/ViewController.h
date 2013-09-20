@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - ViewController interface -
+
 @interface ViewController : JSViewController
 
 @end

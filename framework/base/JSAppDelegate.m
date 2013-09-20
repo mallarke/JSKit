@@ -54,7 +54,10 @@
         root = self.appRootViewController;
     }
     
+    CGFloat statusBarHeight = application.statusBarFrame.size.height;
+
     CGRect bounds = [UIScreen mainScreen].bounds;
+    bounds.size.height -= statusBarHeight;
     
     self.window = [UIWindow new];
     self.window.frame = bounds;
