@@ -48,21 +48,21 @@
 		25B8E87117EC862600826258 /* JSAsyncTaskQueueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E86F17EC862600826258 /* JSAsyncTaskQueueInfo.m */; };
 		25B8E87A17EC9C6400826258 /* AsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87717EC9C6400826258 /* AsyncTask.m */; };
 		25B8E87B17EC9C6400826258 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87917EC9C6400826258 /* ViewController.m */; };
-		25B8E89117EC9D6000826258 /* NSDictionary+BaseValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E87D17EC9D6000826258 /* NSDictionary+BaseValues.h */; };
+		25B8E89117EC9D6000826258 /* NSDictionary+BaseValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E87D17EC9D6000826258 /* NSDictionary+BaseValues.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E89217EC9D6000826258 /* NSDictionary+BaseValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E87E17EC9D6000826258 /* NSDictionary+BaseValues.m */; };
-		25B8E89317EC9D6000826258 /* NSMutableDictionary+BaseValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E87F17EC9D6000826258 /* NSMutableDictionary+BaseValues.h */; };
+		25B8E89317EC9D6000826258 /* NSMutableDictionary+BaseValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E87F17EC9D6000826258 /* NSMutableDictionary+BaseValues.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E89417EC9D6000826258 /* NSMutableDictionary+BaseValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88017EC9D6000826258 /* NSMutableDictionary+BaseValues.m */; };
-		25B8E89717EC9D6000826258 /* NSString+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88317EC9D6000826258 /* NSString+URL.h */; };
+		25B8E89717EC9D6000826258 /* NSString+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88317EC9D6000826258 /* NSString+URL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E89817EC9D6000826258 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88417EC9D6000826258 /* NSString+URL.m */; };
-		25B8E89917EC9D6000826258 /* UIImage+CustomInit.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88517EC9D6000826258 /* UIImage+CustomInit.h */; };
+		25B8E89917EC9D6000826258 /* UIImage+CustomInit.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88517EC9D6000826258 /* UIImage+CustomInit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E89A17EC9D6000826258 /* UIImage+CustomInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88617EC9D6000826258 /* UIImage+CustomInit.m */; };
-		25B8E89D17EC9D6000826258 /* UITableView+CustomInit.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88917EC9D6000826258 /* UITableView+CustomInit.h */; };
+		25B8E89D17EC9D6000826258 /* UITableView+CustomInit.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88917EC9D6000826258 /* UITableView+CustomInit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E89E17EC9D6000826258 /* UITableView+CustomInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88A17EC9D6000826258 /* UITableView+CustomInit.m */; };
-		25B8E89F17EC9D6000826258 /* UIView+Center.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88B17EC9D6000826258 /* UIView+Center.h */; };
+		25B8E89F17EC9D6000826258 /* UIView+Center.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88B17EC9D6000826258 /* UIView+Center.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E8A017EC9D6000826258 /* UIView+Center.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88C17EC9D6000826258 /* UIView+Center.m */; };
-		25B8E8A117EC9D6000826258 /* UIView+RemoveSubviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88D17EC9D6000826258 /* UIView+RemoveSubviews.h */; };
+		25B8E8A117EC9D6000826258 /* UIView+RemoveSubviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88D17EC9D6000826258 /* UIView+RemoveSubviews.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E8A217EC9D6000826258 /* UIView+RemoveSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E88E17EC9D6000826258 /* UIView+RemoveSubviews.m */; };
-		25B8E8A317EC9D6000826258 /* UIView+Frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88F17EC9D6000826258 /* UIView+Frame.h */; };
+		25B8E8A317EC9D6000826258 /* UIView+Frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B8E88F17EC9D6000826258 /* UIView+Frame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25B8E8A417EC9D6000826258 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B8E89017EC9D6000826258 /* UIView+Frame.m */; };
 /* End PBXBuildFile section */
 
@@ -344,16 +344,16 @@
 				25B8E86917EC854B00826258 /* JSAsyncTask_Private.h in Headers */,
 				25B8E87017EC862600826258 /* JSAsyncTaskQueueInfo.h in Headers */,
 				25B8E8A317EC9D6000826258 /* UIView+Frame.h in Headers */,
-				2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */,
 				25B8E8A117EC9D6000826258 /* UIView+RemoveSubviews.h in Headers */,
 				25B8E89917EC9D6000826258 /* UIImage+CustomInit.h in Headers */,
 				25B8E89717EC9D6000826258 /* NSString+URL.h in Headers */,
 				25B8E89F17EC9D6000826258 /* UIView+Center.h in Headers */,
 				25B8E89D17EC9D6000826258 /* UITableView+CustomInit.h in Headers */,
 				25B8E89317EC9D6000826258 /* NSMutableDictionary+BaseValues.h in Headers */,
+				25B8E89117EC9D6000826258 /* NSDictionary+BaseValues.h in Headers */,
+				2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */,
 				25B8E86517EC827E00826258 /* JSAsyncTask.h in Headers */,
 				25B8E86C17EC859B00826258 /* JSAsyncTaskManager.h in Headers */,
-				25B8E89117EC9D6000826258 /* NSDictionary+BaseValues.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
