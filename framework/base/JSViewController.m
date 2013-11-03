@@ -44,25 +44,33 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.view viewWillAppear:animated];
+    
+    if([self.view respondsToSelector:@selector(viewWillAppear:)])
+        [self.view viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.view viewDidAppear:animated];
+    
+    if([self.view respondsToSelector:@selector(viewDidAppear:)])
+        [self.view viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.view viewWillDisappear:animated];
+    
+    if([self.view respondsToSelector:@selector(viewWillDisappear:)])
+        [self.view viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.view viewDidDisappear:animated];
+    
+    if([self.view respondsToSelector:@selector(viewDidDisappear:)])
+        [self.view viewDidDisappear:animated];
 }
 
 #pragma mark - Public methods -

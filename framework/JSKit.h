@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 shadow coding. All rights reserved.
 //
 
+#import "JSVersionFactory.h"
+
 #import "JSAppDelegate.h"
 #import "JSViewController.h"
 #import "JSView.h"
