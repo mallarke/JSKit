@@ -13,6 +13,8 @@
 
 @interface ViewController()
 
+@property (readonly) NSString *alertText;
+
 @end
 
 #pragma mark - ViewController implementation
@@ -50,7 +52,7 @@
     
     JSAsyncTaskResponseHandler handler = ^(id response)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"I'm an alert!!" message:@"I'm a message" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.alertText message:@"I'm a message" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
         [alert show];
     };
     
@@ -66,5 +68,15 @@
 #pragma mark - Protected methods -
 
 #pragma mark - Getter/Setter methods -
+
+- (NSString *)alertText
+{
+    return @"I'm some default text";
+}
+
+- (NSString *)alertText_iOS7
+{
+    return @"I'm running on iOS 7";
+}
 
 @end

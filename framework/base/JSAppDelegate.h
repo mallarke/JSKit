@@ -14,16 +14,4 @@
 
 @property (nonatomic, strong) UIWindow *window;
 
-@property (readonly) BOOL usesNavigationController;
-
-@property (readonly) __unsafe_unretained Class customNavBarClass;
-@property (readonly) __unsafe_unretained Class customTabBarClass;
-
-/*
- * should either be the view controller you would like to use for the navigation 
- * controller if you return true for usesNavigationController or for the window's 
- * root view controller.
- */
-@property (readonly) UIViewController *rootViewController;
-
 @end

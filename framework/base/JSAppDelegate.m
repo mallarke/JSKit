@@ -8,14 +8,13 @@
 
 #import "JSAppDelegate.h"
 
+#import "NSObject+Versioning.h"
+
 #pragma mark - JSAppDelegate extension -
 
 @interface JSAppDelegate()
 
-@property (strong) UINavigationController *navController;
-@property (strong) UIViewController *appRootViewController;
-
-- (void)throwNilRootViewException;
+- (void)setUpVersioning;
 
 @end
 
@@ -26,33 +25,9 @@
 #pragma mark - Constructor/Destructor methods -
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
-    UIViewController *root = nil;
-    self.appRootViewController = self.rootViewController;
-    
-    if(!self.appRootViewController)
-    {
-        [self throwNilRootViewException];
-    }
-    
-    if(self.usesNavigationController)
-    {
-        __unsafe_unretained Class navBarClass = self.customNavBarClass;
-        __unsafe_unretained Class tabBarClass = self.customTabBarClass;
-        
-        if(navBarClass || tabBarClass)
-            self.navController = [[UINavigationController alloc] initWithNavigationBarClass:navBarClass toolbarClass:tabBarClass];
-        else
-            self.navController = [UINavigationController new];
-
-        [self.navController pushViewController:self.appRootViewController animated:false];
-        
-        root = self.navController;
-    }
-    else
-    {
-        root = self.appRootViewController;
-    }
+{
+    // set up our versioning stuffs
+    [self setUpVersioning];
     
     CGFloat statusBarHeight = application.statusBarFrame.size.height;
 
@@ -61,7 +36,6 @@
     
     self.window = [UIWindow new];
     self.window.frame = bounds;
-    self.window.rootViewController = root;
     [self.window makeKeyAndVisible];
     
     return true;
@@ -70,33 +44,51 @@
 - (void)dealloc
 {
     self.window = nil;
-    self.navController = nil;
-    self.appRootViewController = nil;
 }
 
 #pragma mark - Public methods -
 
 #pragma mark - Private methods -
 
-- (void)throwNilRootViewException
+- (void)setUpVersioning
 {
-    [NSException raise:@"Invalid root viewcontroller. override - (UIViewController *)rootViewController in your AppDelegate.m." format:@"rootViewController can not be nil"];
+    return;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"VersionList" ofType:@"plist"];
+    NSDictionary *versioningPlist = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    path = [[NSBundle mainBundle] resourcePath];
+    path = [path stringByAppendingPathComponent:@"JSKit.framework"];
+    path = [path stringByAppendingPathComponent:@"Resources"];
+    path = [path stringByAppendingPathComponent:@"JSVersionList.plist"];
+    NSDictionary *jsversioningPlist = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    if(!jsversioningPlist)
+    {
+        [NSException raise:@"Missing Resources Exception" format:@"Include JSKit.framework in the Copy Resources build phase."];
+    }
+    
+    NSArray *keys = [versioningPlist allKeys];
+    for(NSString *key in keys)
+    {
+        NSArray *methods = [versioningPlist objectForKey:key];
+        for(NSString *method in methods)
+        {
+            NSString *version = [NSString stringWithFormat:@"%@_iOS7", method];
+            SEL original = NSSelectorFromString(method);
+            SEL replacement = NSSelectorFromString(version);
+            
+            Class c = NSClassFromString(key);
+            if([c instancesRespondToSelector:replacement])
+            {
+//                js_swizzle_instance_method(c, original, replacement);
+            }
+        }
+    }
 }
 
 #pragma mark - Protected methods -
 
 #pragma mark - Getter/Setter methods -
-
-- (BOOL)usesNavigationController { return false; }
-
-- (Class)customNavBarClass { return nil; }
-- (Class)customTabBarClass { return nil; }
-
-- (UIViewController *)rootViewController
-{
-    [self throwNilRootViewException];
-    return nil;
-}
 
 @end
 

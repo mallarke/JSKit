@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 rm -rf build
+rm -rf DerivedData
 rm -rf Products
 rm -rf JSKit.xcodeproj/xcuserdata
 rm -rf JSKit.xcodeproj/project.xcworkspace/xcuserdata

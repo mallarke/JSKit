@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 shadow coding. All rights reserved.
 //
 
-#import "JSVersionFactory.h"
-
 #import "JSAppDelegate.h"
 #import "JSViewController.h"
 #import "JSView.h"
@@ -22,3 +20,5 @@
 #import "UIView+Center.h"
 #import "UIView+RemoveSubviews.h"
 #import "UIView+Frame.h"
+
+#import "JSUtility.h"

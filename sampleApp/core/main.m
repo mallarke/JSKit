@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         
         @try
         {
-            retVal = UIApplicationMain(argc, argv, nil, [JSVersionFactory getClassNameForClass:[AppDelegate class]]);
+            retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
         }
         @catch (NSException *exception)
         {

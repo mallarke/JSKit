@@ -12,7 +12,9 @@
     #import "UIImage+CustomInit.h"
     #import "UITableView+CustomInit.h"
     #import "UIView+Center.h"
-    #import "UIView+RemoveSubviews.h"
     #import "UIView+Frame.h"
+    #import "UIView+RemoveSubviews.h"
+
+    #import "JSUtility.h"
 
 #endif
