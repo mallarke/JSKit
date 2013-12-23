@@ -22,14 +22,18 @@
 
 /* Begin PBXBuildFile section */
 		254B2F4D1866109F0071CE98 /* stringBuilder in Resources */ = {isa = PBXBuildFile; fileRef = 254B2F4C1866109F0071CE98 /* stringBuilder */; };
+		254B302C18680CDF0071CE98 /* NSString+JSKitStringMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 254B302818680CDF0071CE98 /* NSString+JSKitStringMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		254B302D18680CDF0071CE98 /* NSString+JSKitStringMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 254B302918680CDF0071CE98 /* NSString+JSKitStringMethods.m */; };
+		254B302E18680CDF0071CE98 /* UIView+XibLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 254B302A18680CDF0071CE98 /* UIView+XibLocalization.h */; };
+		254B302F18680CDF0071CE98 /* UIView+XibLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 254B302B18680CDF0071CE98 /* UIView+XibLocalization.m */; };
+		254B30371868103B0071CE98 /* JSMissingResourceException.h in Headers */ = {isa = PBXBuildFile; fileRef = 254B30351868103B0071CE98 /* JSMissingResourceException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		254B30381868103B0071CE98 /* JSMissingResourceException.m in Sources */ = {isa = PBXBuildFile; fileRef = 254B30361868103B0071CE98 /* JSMissingResourceException.m */; };
 		2560466417EB1019008C91F7 /* JSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560466217EB1019008C91F7 /* JSViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2560466517EB1019008C91F7 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560466317EB1019008C91F7 /* JSViewController.m */; };
 		2560466B17EB136F008C91F7 /* JSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560466A17EB136F008C91F7 /* JSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2560466F17EB14D5008C91F7 /* JSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2560466817EB1335008C91F7 /* JSKit.framework */; };
 		2560467417EB1542008C91F7 /* JSAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2560467217EB1542008C91F7 /* JSAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2560467517EB1542008C91F7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2560467317EB1542008C91F7 /* JSAppDelegate.m */; };
-		2568C1901825E9DB003D2E48 /* NSObject+Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 2568C18E1825E9DB003D2E48 /* NSObject+Versioning.h */; };
-		2568C1911825E9DB003D2E48 /* NSObject+Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568C18F1825E9DB003D2E48 /* NSObject+Versioning.m */; };
 		25A7FB7B17EB08950018C239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7A17EB08950018C239 /* UIKit.framework */; };
 		25A7FB7D17EB08950018C239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7C17EB08950018C239 /* Foundation.framework */; };
 		25A7FB7F17EB08950018C239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7FB7E17EB08950018C239 /* CoreGraphics.framework */; };
@@ -42,7 +46,6 @@
 		25A7FBC717EB09810018C239 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25A7FBC517EB09810018C239 /* InfoPlist.strings */; };
 		25A7FBD317EB0A4B0018C239 /* JSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A7FBD217EB0A4B0018C239 /* JSView.m */; };
 		25A7FBD517EB0A6A0018C239 /* JSView.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A7FBD117EB0A4B0018C239 /* JSView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		25ABCAD51826067900398AD6 /* JSVersionList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25ABCAD41826067900398AD6 /* JSVersionList.plist */; };
 		25ABCAD7182606A000398AD6 /* VersionList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25ABCAD6182606A000398AD6 /* VersionList.plist */; };
 		25ABCB431826155800398AD6 /* JSUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2568C1871825E563003D2E48 /* JSUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25ABCB441826159300398AD6 /* JSUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2568C1881825E563003D2E48 /* JSUtility.m */; };
@@ -86,6 +89,12 @@
 
 /* Begin PBXFileReference section */
 		254B2F4C1866109F0071CE98 /* stringBuilder */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stringBuilder; sourceTree = "<group>"; };
+		254B302818680CDF0071CE98 /* NSString+JSKitStringMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSKitStringMethods.h"; sourceTree = "<group>"; };
+		254B302918680CDF0071CE98 /* NSString+JSKitStringMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSKitStringMethods.m"; sourceTree = "<group>"; };
+		254B302A18680CDF0071CE98 /* UIView+XibLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibLocalization.h"; sourceTree = "<group>"; };
+		254B302B18680CDF0071CE98 /* UIView+XibLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibLocalization.m"; sourceTree = "<group>"; };
+		254B30351868103B0071CE98 /* JSMissingResourceException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMissingResourceException.h; sourceTree = "<group>"; };
+		254B30361868103B0071CE98 /* JSMissingResourceException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSMissingResourceException.m; sourceTree = "<group>"; };
 		2560466217EB1019008C91F7 /* JSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
 		2560466317EB1019008C91F7 /* JSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
 		2560466817EB1335008C91F7 /* JSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSKit.framework; path = Products/JSKit.framework; sourceTree = "<group>"; };
@@ -94,8 +103,6 @@
 		2560467317EB1542008C91F7 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
 		2568C1871825E563003D2E48 /* JSUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSUtility.h; sourceTree = "<group>"; };
 		2568C1881825E563003D2E48 /* JSUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSUtility.m; sourceTree = "<group>"; };
-		2568C18E1825E9DB003D2E48 /* NSObject+Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Versioning.h"; sourceTree = "<group>"; };
-		2568C18F1825E9DB003D2E48 /* NSObject+Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Versioning.m"; sourceTree = "<group>"; };
 		25A7FB7717EB08950018C239 /* JSKitSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSKitSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A7FB7A17EB08950018C239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25A7FB7C17EB08950018C239 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,7 +122,6 @@
 		25A7FBC817EB09810018C239 /* JSKitBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSKitBundle-Prefix.pch"; sourceTree = "<group>"; };
 		25A7FBD117EB0A4B0018C239 /* JSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSView.h; sourceTree = "<group>"; };
 		25A7FBD217EB0A4B0018C239 /* JSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSView.m; sourceTree = "<group>"; };
-		25ABCAD41826067900398AD6 /* JSVersionList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JSVersionList.plist; sourceTree = "<group>"; };
 		25ABCAD6182606A000398AD6 /* VersionList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VersionList.plist; sourceTree = "<group>"; };
 		25B8E86317EC827E00826258 /* JSAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAsyncTask.h; sourceTree = "<group>"; };
 		25B8E86417EC827E00826258 /* JSAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAsyncTask.m; sourceTree = "<group>"; };
@@ -176,6 +182,15 @@
 			path = scripts;
 			sourceTree = "<group>";
 		};
+		254B30341868101D0071CE98 /* exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				254B30351868103B0071CE98 /* JSMissingResourceException.h */,
+				254B30361868103B0071CE98 /* JSMissingResourceException.m */,
+			);
+			path = exceptions;
+			sourceTree = "<group>";
+		};
 		2568C1861825E54E003D2E48 /* utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				2560466A17EB136F008C91F7 /* JSKit.h */,
-				25ABCAD41826067900398AD6 /* JSVersionList.plist */,
 				25A7FB9E17EB09370018C239 /* asyncTask */,
 				25A7FB9F17EB09370018C239 /* base */,
 				25A7FBA017EB09370018C239 /* cacher */,
+				254B30341868101D0071CE98 /* exceptions */,
 				25B8E87C17EC9D1F00826258 /* categories */,
 				2568C1861825E54E003D2E48 /* utility */,
 				254B2F4B1866109F0071CE98 /* scripts */,
@@ -351,8 +366,8 @@
 				25B8E87E17EC9D6000826258 /* NSDictionary+BaseValues.m */,
 				25B8E87F17EC9D6000826258 /* NSMutableDictionary+BaseValues.h */,
 				25B8E88017EC9D6000826258 /* NSMutableDictionary+BaseValues.m */,
-				2568C18E1825E9DB003D2E48 /* NSObject+Versioning.h */,
-				2568C18F1825E9DB003D2E48 /* NSObject+Versioning.m */,
+				254B302818680CDF0071CE98 /* NSString+JSKitStringMethods.h */,
+				254B302918680CDF0071CE98 /* NSString+JSKitStringMethods.m */,
 				25B8E88317EC9D6000826258 /* NSString+URL.h */,
 				25B8E88417EC9D6000826258 /* NSString+URL.m */,
 				25B8E88517EC9D6000826258 /* UIImage+CustomInit.h */,
@@ -365,6 +380,8 @@
 				25B8E89017EC9D6000826258 /* UIView+Frame.m */,
 				25B8E88D17EC9D6000826258 /* UIView+RemoveSubviews.h */,
 				25B8E88E17EC9D6000826258 /* UIView+RemoveSubviews.m */,
+				254B302A18680CDF0071CE98 /* UIView+XibLocalization.h */,
+				254B302B18680CDF0071CE98 /* UIView+XibLocalization.m */,
 			);
 			path = categories;
 			sourceTree = "<group>";
@@ -377,17 +394,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2560466417EB1019008C91F7 /* JSViewController.h in Headers */,
+				254B30371868103B0071CE98 /* JSMissingResourceException.h in Headers */,
 				25A7FBD517EB0A6A0018C239 /* JSView.h in Headers */,
 				2560466B17EB136F008C91F7 /* JSKit.h in Headers */,
 				25B8E86917EC854B00826258 /* JSAsyncTask_Private.h in Headers */,
 				25B8E87017EC862600826258 /* JSAsyncTaskQueueInfo.h in Headers */,
 				25B8E8A317EC9D6000826258 /* UIView+Frame.h in Headers */,
+				254B302E18680CDF0071CE98 /* UIView+XibLocalization.h in Headers */,
 				25B8E8A117EC9D6000826258 /* UIView+RemoveSubviews.h in Headers */,
 				25B8E89917EC9D6000826258 /* UIImage+CustomInit.h in Headers */,
 				25ABCB431826155800398AD6 /* JSUtility.h in Headers */,
 				25B8E89717EC9D6000826258 /* NSString+URL.h in Headers */,
+				254B302C18680CDF0071CE98 /* NSString+JSKitStringMethods.h in Headers */,
 				25B8E89F17EC9D6000826258 /* UIView+Center.h in Headers */,
-				2568C1901825E9DB003D2E48 /* NSObject+Versioning.h in Headers */,
 				25B8E89D17EC9D6000826258 /* UITableView+CustomInit.h in Headers */,
 				25B8E89317EC9D6000826258 /* NSMutableDictionary+BaseValues.h in Headers */,
 				25B8E89117EC9D6000826258 /* NSDictionary+BaseValues.h in Headers */,
@@ -483,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A7FBC717EB09810018C239 /* InfoPlist.strings in Resources */,
-				25ABCAD51826067900398AD6 /* JSVersionList.plist in Resources */,
 				254B2F4D1866109F0071CE98 /* stringBuilder in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,12 +542,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A7FBD317EB0A4B0018C239 /* JSView.m in Sources */,
-				2568C1911825E9DB003D2E48 /* NSObject+Versioning.m in Sources */,
 				25B8E89E17EC9D6000826258 /* UITableView+CustomInit.m in Sources */,
 				25B8E89A17EC9D6000826258 /* UIImage+CustomInit.m in Sources */,
 				25B8E89217EC9D6000826258 /* NSDictionary+BaseValues.m in Sources */,
+				254B30381868103B0071CE98 /* JSMissingResourceException.m in Sources */,
 				2560466517EB1019008C91F7 /* JSViewController.m in Sources */,
 				25B8E86D17EC859B00826258 /* JSAsyncTaskManager.m in Sources */,
+				254B302F18680CDF0071CE98 /* UIView+XibLocalization.m in Sources */,
 				25ABCB441826159300398AD6 /* JSUtility.m in Sources */,
 				25B8E8A417EC9D6000826258 /* UIView+Frame.m in Sources */,
 				25B8E8A217EC9D6000826258 /* UIView+RemoveSubviews.m in Sources */,
@@ -539,6 +558,7 @@
 				25B8E86617EC827E00826258 /* JSAsyncTask.m in Sources */,
 				2560467517EB1542008C91F7 /* JSAppDelegate.m in Sources */,
 				25B8E8A017EC9D6000826258 /* UIView+Center.m in Sources */,
+				254B302D18680CDF0071CE98 /* NSString+JSKitStringMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

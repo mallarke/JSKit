@@ -16,5 +16,5 @@
     #import "UIView+RemoveSubviews.h"
 
     #import "JSUtility.h"
-
+    #import "JSMissingResourceException.h"
 #endif

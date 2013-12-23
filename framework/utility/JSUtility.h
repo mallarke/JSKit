@@ -17,8 +17,3 @@ BOOL is_ipad();
 
 void js_swizzle_class_method(Class c, SEL originalSelector, SEL replacementSelector);
 void js_swizzle_instance_method(Class c, SEL originalSelector, SEL replacementSelector);
-
-#pragma mark - Versioning methods -
-
-Class get_class(Class name);
-Class get_class_for_name(NSString *originalClass);

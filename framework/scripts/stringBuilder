@@ -6,12 +6,19 @@ import sys
 import re
 
 import shutil
+from subprocess import call
+
+if len(sys.argv) <= 1:
+	print "No project name supplied..."
+	sys.exit()
 
 class Constants(object):
 	def __init__(self):
-		self.projectName = (sys.argv[1] if len(sys.argv) > 1 else "jsKitTesing") + ".xcodeproj"
+		self.project = sys.argv[1]
+		self.projectName = self.project + ".xcodeproj"
+
 		self.dirs = DirValues()
-		self.factory = FactoryValues(self.dirs.strings)
+		self.factory = FactoryValues(self.project, self.dirs.strings)
 		
 		self.localizable = "Localizable.strings"
 		self.gitIgnore = ".gitignore"
@@ -24,10 +31,16 @@ class DirValues(object):
 		self.html = "localizeResults"
 
 class FactoryValues(object):
-	def __init__(self, stringsDir):
-		path = os.path.join(stringsDir, "NSString+LocalizationReader.")
-		self.h = path + "h"
-		self.m = path + "m"
+	def __init__(self, project, stringsDir):
+		self.categoryName = "{0}LocalizationReader".format(project)
+		name = "NSString+{0}.".format(self.categoryName)
+
+		self.h = name + "h"
+		self.m = name + "m"
+
+
+		self.hPath = os.path.join(stringsDir, self.h)
+		self.mPath = os.path.join(stringsDir, self.m)
 		
 constants = Constants()
 
@@ -36,6 +49,7 @@ LOCALIZED_DIR_REGEX = re.compile(r"((.*?)([\w]{2}[.]lproj)(.*))")
 def buildPath(path, fresh = False):
 	if fresh:
 		if os.path.exists(path):
+			print "Recreating path..."
 			shutil.rmtree(path)
 
 	components = path.split("/")
@@ -46,6 +60,8 @@ def buildPath(path, fresh = False):
 		path = os.path.join(os.getcwd(), currentPath)
 
 		if not os.path.exists(path):
+			if not fresh:
+				print "building path..."
 			os.makedirs(path)
 
 def writeLine(f, text, addLine = False, tabs = 0):
@@ -67,8 +83,11 @@ def appendAutoGenerate(f):
 class LanguageParser(object):
 	def __init__(self):
 		self.languages = []
+		languages = self.getSupportedLanguagesList()
 
-		self.readValues()
+		self.buildResStruct(languages)
+		self.addToPCH()
+		self.readValues(languages)
 		self.writeLocalization()
 
 		self.createFactory()
@@ -77,8 +96,10 @@ class LanguageParser(object):
 		return match.group(3)
 
 	def getSupportedLanguagesList(self):
+		print "fetching supported languages..."
+
 		path = os.path.join(constants.projectName, "project.pbxproj")
-		name = os.path.join("lproj", constants.localizable)
+		name = os.path.join("lproj", "InfoPlist.strings")
 
 		supportedLanguages = []
 
@@ -86,12 +107,52 @@ class LanguageParser(object):
 			for line in f:
 				if name in line.rstrip():
 					fileName = LOCALIZED_DIR_REGEX.sub(self.languageDirParser, line).rstrip()
-					supportedLanguages.append(fileName)
+
+					if not any((fileName == currentName) for currentName in supportedLanguages):
+						supportedLanguages.append(fileName)
 
 		return supportedLanguages
 
-	def readValues(self):
-		for language in self.getSupportedLanguagesList():
+	def buildResStruct(self, languages):
+		for language in languages:
+			path = os.path.join(constants.dirs.strings, language)
+			buildPath(path)
+
+			path = os.path.join(path, "strings.h")
+			call(["touch", path])
+
+	def addToPCH(self):
+		for root, dirs, files in os.walk(os.getcwd()):
+			for f in files:
+				path = os.path.join(root, f)
+
+				if any((item in path) for item in [ "build", "DerivedData" ]): 
+					continue
+
+				fileName = "{0}-Prefix.pch".format(constants.project)
+				if fileName in path:
+					alreadyAdded = False
+
+					existingLines = []
+
+					with open(path) as f:
+						for line in f:
+							existingLines.append(line.rstrip())
+
+							if constants.factory.h in line:
+								alreadyAdded = True
+								break
+
+					if not alreadyAdded:
+						with open(path, "w") as f:
+							for line in existingLines:
+								writeLine(f, line)
+
+							newLine(f)
+							writeLine(f, "#import \"{0}\"".format(constants.factory.h))
+
+	def readValues(self, supportedLanguages):
+		for language in supportedLanguages:
 			path = os.path.join(constants.dirs.strings, language, "strings.h")
 			languageItem = LanguageItem(language, path)
 			
@@ -112,11 +173,11 @@ class LanguageParser(object):
 		self.writeFactoryImplementation()
 
 	def writeFactoryInterface(self):
-		with open(constants.factory.h, "w+") as f:
+		with open(constants.factory.hPath, "w+") as f:
 			appendAutoGenerate(f)
 
 			writeLine(f, "#import <Foundation/Foundation.h>", True)
-			writeLine(f, "@interface NSString (LocalizationReader)", True)
+			writeLine(f, "@interface NSString ({0})".format(constants.factory.categoryName), True)
 
 			english = self.getLanguage("en")
 			for key in english.getSortedKeys():
@@ -126,11 +187,11 @@ class LanguageParser(object):
 			writeLine(f, "@end")
 
 	def writeFactoryImplementation(self):
-		with open(constants.factory.m, "w+") as f:
+		with open(constants.factory.mPath, "w+") as f:
 			appendAutoGenerate(f)
 
-			writeLine(f, "#import \"NSString+LocalizationReader.h\"", True)
-			writeLine(f, "@implementation NSString (LocalizationReader)", True)
+			writeLine(f, "#import \"NSString+{0}.h\"".format(constants.factory.categoryName), True)
+			writeLine(f, "@implementation NSString ({0})".format(constants.factory.categoryName), True)
 
 			english = self.getLanguage("en")
 			for key in english.getSortedKeys():
@@ -261,6 +322,11 @@ class HTMLBuilder(object):
 			self.results.append(item)
 
 	def writeHTMLFiles(self):
+		if len(self.results) == 0:
+			print "No missing localization values..."
+		else:
+			print "Missing localizations. Building report..."
+
 		buildPath(constants.dirs.html, fresh = True)
 
 		for htmlItem in self.results:

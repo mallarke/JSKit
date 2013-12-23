@@ -22,3 +22,4 @@
 #import "UIView+Frame.h"
 
 #import "JSUtility.h"
+#import "JSMissingResourceException.h"
