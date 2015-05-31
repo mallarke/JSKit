@@ -10,6 +10,6 @@
 
 #pragma mark - ViewController interface -
 
-@interface ViewController : JSViewController
+@interface ViewController : UIViewController
 
 @end

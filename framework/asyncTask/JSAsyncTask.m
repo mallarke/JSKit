@@ -17,6 +17,7 @@
 
 @property (readonly) JSAsyncTaskManager *manager;
 
+- (void)performPreTask;
 - (void)performBackgroundTask;
 - (void)performFinishTask;
 
@@ -67,6 +68,12 @@
         return;
     
     self.hasBegun = true;
+    [self performPreTask];
+}
+
+- (void)performPreTask
+{
+    [self preTask];
     [self performBackgroundTask];
 }
 

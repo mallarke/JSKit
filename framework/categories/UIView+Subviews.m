@@ -6,9 +6,20 @@
 //  Copyright (c) 2013 shadow coding, Inc. All rights reserved.
 //
 
-#import "UIView+RemoveSubviews.h"
+#import "UIView+Subviews.h"
 
-@implementation UIView (RemoveSubviews)
+@implementation UIView (Subviews)
+
+- (void)addSubviews:(NSArray *)subviews
+{
+    for(UIView *view in subviews)
+    {
+        if(![view isMemberOfClass:[UIView class]])
+            continue;
+        
+        [self addSubview:view];
+    }
+}
 
 - (void)removeAllSubviews
 {

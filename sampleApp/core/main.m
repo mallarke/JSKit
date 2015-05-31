@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         }
         @catch (NSException *exception)
         {
-            NSLog(@"*** Terminating app due to uncaught exception: %@", [exception reason]);
+            NSLog(@"*** Terminating app due to uncaught %@: %@", [exception name], [exception reason]);
             NSLog(@"Stack trace: %@", [exception callStackSymbols]);
             [exception raise];
         }

@@ -37,7 +37,7 @@ typedef void (^JSAsyncTaskResponseHandler)(id);
 /**
  *
  * Max number of threads that you would like spawned.  The default value is 5.  Pass 1 for 
- * serial threading.
+ * concurrent threading.
  */
 @property (readonly) int maxNumberOfThreads;
 

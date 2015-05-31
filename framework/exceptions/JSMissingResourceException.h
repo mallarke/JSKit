@@ -2,14 +2,14 @@
 //  JSMissingResourceException.h
 //  JSKit
 //
-//  Created by mallarke on 12/23/13.
-//  Copyright (c) 2013 shadow coding. All rights reserved.
+//  Created by mallarke on 6/8/14.
+//  Copyright (c) 2014 shadow coding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 #pragma mark - JSMissingResourceException interface -
 
-@interface JSMissingResourceException : NSException
+@interface JSMissingResourceException : JSException
 
 @end

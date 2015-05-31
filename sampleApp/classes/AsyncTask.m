@@ -42,6 +42,10 @@
 
 #pragma mark - Protected methods -
 
+- (void)preTask
+{
+}
+
 - (void)backgroundTask
 {
 }

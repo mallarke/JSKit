@@ -10,6 +10,7 @@
 
 @interface UIView (RemoveSubviews)
 
+- (void)addSubviews:(NSArray *)subviews;
 - (void)removeAllSubviews;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "JSViewController.h"
-#import "JSView.h"
+#import "JSView_Private.h"
 
 #pragma mark - JSViewController extension -
 
@@ -41,36 +41,40 @@
 
 #pragma mark - View life cycle methods -
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if([self.view respondsToSelector:@selector(viewWillAppear:)])
-        [self.view viewWillAppear:animated];
+    if ([self.view respondsToSelector:@selector(_viewWillAppear:)]) {
+        JSView *view = (JSView *) self.view;
+        [view _viewWillAppear:animated];
+    }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if([self.view respondsToSelector:@selector(viewDidAppear:)])
-        [self.view viewDidAppear:animated];
+    if ([self.view respondsToSelector:@selector(_viewDidAppear:)]) {
+        JSView *view = (JSView *)self.view;
+        [view _viewDidAppear:animated];
+    }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if([self.view respondsToSelector:@selector(viewWillDisappear:)])
-        [self.view viewWillDisappear:animated];
+    if ([self.view respondsToSelector:@selector(_viewWillDisappear:)]) {
+        JSView *view = (JSView *)self.view;
+        [view _viewWillDisappear:animated];
+    }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    if([self.view respondsToSelector:@selector(viewDidDisappear:)])
-        [self.view viewDidDisappear:animated];
+    if ([self.view respondsToSelector:@selector(_viewDidDisappear:)]) {
+        JSView *view = (JSView *)self.view;
+        [view _viewDidDisappear:animated];
+    }
 }
 
 #pragma mark - Public methods -

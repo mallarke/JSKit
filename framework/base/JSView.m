@@ -6,25 +6,13 @@
 //  Copyright (c) 2013 shadow coding. All rights reserved.
 //
 
-#import "JSView.h"
-
-CG_INLINE void _log(NSString *format, ...)
-{
-    va_list args;
-    va_start(args, format);
-    
-    NSString *string = [[NSString alloc] initWithFormat:format arguments:args];
-    
-    va_end(args);
-    
-    NSLog(@"%@", string);
-};
-
-#define Log(__format__, ...) _log(__format__, ##__VA_ARGS__)
+#import "JSView_Private.h"
 
 #pragma mark - JSView extension -
 
 @interface JSView()
+
+- (void)updateChildren:(BOOL)animated action:(void (^)(JSView *))action;
 
 @end
 
@@ -40,14 +28,10 @@ CG_INLINE void _log(NSString *format, ...)
 
     if(self) 
 	{
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
     }
 
     return self;
-}
-
-- (void)dealloc
-{
 }
 
 #pragma mark - Public methods -
@@ -60,7 +44,53 @@ CG_INLINE void _log(NSString *format, ...)
 
 #pragma mark - Private methods -
 
+- (void)updateChildren:(BOOL)animated action:(void (^)(JSView *))action {
+	NSArray *subviews = self.subviews;
+	
+    for (__block JSView *view in subviews) {
+        if (![view isKindOfClass:[JSView class]] || !action) {
+            continue;
+        }
+        
+        action(view);
+    }
+}
+
 #pragma mark - Protected methods -
+
+- (void)_viewWillAppear:(BOOL)animated {
+    [self viewWillAppear:animated];
+    [self updateChildren:animated action:^(JSView *view) {
+        [view _viewWillAppear:animated];
+    }];
+}
+
+- (void)_viewDidAppear:(BOOL)animated {
+    [self viewDidAppear:animated];
+    [self updateChildren:animated action:^(JSView *view) {
+        [view _viewDidAppear:animated];
+    }];
+}
+
+- (void)_viewWillDisappear:(BOOL)animated {
+    [self viewWillDisappear:animated];
+    [self updateChildren:animated action:^(JSView *view) {
+        [view _viewWillDisappear:animated];
+    }];
+}
+
+- (void)_viewDidDisappear:(BOOL)animated {
+	NSArray *subviews = self.subviews;
+	for (UIView *view in subviews) {
+		if ([view isFirstResponder])
+    		[view resignFirstResponder];
+	}
+	
+    [self viewDidDisappear:animated];
+    [self updateChildren:animated action:^(JSView *view) {
+        [view _viewDidDisappear:animated];
+    }];
+}
 
 #pragma mark - Getter/Setter methods -
 

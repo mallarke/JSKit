@@ -9,10 +9,17 @@
 #import "ViewController.h"
 #import "AsyncTask.h"
 
+#import "View.h"
+
+#import "SubViewController.h"
+
+#define FORMATTED_NSSTRING(format, ...) [NSString stringWithFormat:format, ##__VA_ARGS__]
+
 #pragma mark - ViewController extension -
 
 @interface ViewController()
 
+@property (nonatomic, strong) View *view;
 @property (readonly) NSString *alertText;
 
 @end
@@ -43,7 +50,12 @@
 
 - (void)loadView
 {
-    self.view = [JSView new];
+    __weak ViewController *wself = self;
+    
+    self.view = [View new];
+    self.view.listener = ^ {
+		[wself.navigationController pushViewController:[SubViewController new] animated:true];
+    };
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -52,13 +64,17 @@
     
     JSAsyncTaskResponseHandler handler = ^(id response)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.alertText message:@"I'm a message" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.alertText message:[LocalizedString puppy:@"Max", @"awesome", nil] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
         [alert show];
     };
     
     AsyncTask *task = [AsyncTask new];
     task.handler = handler;
-    [task start];
+//    [task start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Public methods -

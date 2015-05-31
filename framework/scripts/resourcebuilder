@@ -1,0 +1,643 @@
+#!/usr/bin/python
+
+import os
+import re
+import shutil
+import sys
+
+from os.path import join
+from os import getcwd
+from subprocess import call
+
+_project = None
+
+_rootPath = getcwd()
+
+_res = None
+_localization = None
+_strings = None
+_images = None
+
+_filePrefix = None
+
+def updateConfig(config):
+	if "project" in config:
+		global _project
+		setProject(config["project"])
+
+	if "prefix" in config:
+		setFilePrefix(config["prefix"])
+
+	if "path" in config:
+		setPathPrefix(config["path"])
+
+def setProject(value):
+	global _project
+	_project = value
+
+def setFilePrefix(prefix):
+	global _filePrefix
+	_filePrefix = prefix
+
+def setPathPrefix(prefix):
+	global _res
+	global _localization
+	global _strings
+	global _images
+
+	_res = (join(prefix, "res") if prefix is not None else "res")
+	_localization = join(_res, "localization")
+	_strings = join(_res, "strings")
+	_images = join(_res, "images")
+
+def getProject():
+	global _project
+	return _project
+
+def getProjectName():
+	global _project
+	return _project + ".xcodeproj"
+
+def getFilePrefix():
+	global _filePrefix
+	return _filePrefix
+
+def getResDir():
+	global _res
+	return _res
+
+def getLocalizationDir():
+	global _localization
+	return _localization
+
+def getStringsDir():
+	global _strings
+	return _strings
+
+def getImagesDir():
+	global _images
+	return _images
+
+def log():
+	print "logging constants vars..."
+	print "Project:     " + getProject()
+	print "ProjectName: " + getProjectName()
+
+	print "\nlogging dir vars..."
+	print "Root path:    " + getRootPath()
+	print "Res:          " + getResDir()
+	print "Localization: " + getLocalizationDir()
+	print "Strings:      " + getStringsDir()
+	print "Images:       " + getImageDir()
+
+def addPythonPath(fileName):
+	path = os.path.dirname(fileName)
+
+	module = os.path.basename(path)
+	print "initializing {0} module...".format(module)
+
+	if not path in sys.path:
+		sys.path.insert(1, path)
+
+def buildPath(path, fresh = False):
+	if fresh:
+		if os.path.exists(path):
+			print "Recreating path..."
+			shutil.rmtree(path)
+
+	components = path.split("/")
+	currentPath = ""
+
+	for segment in components:
+		currentPath = os.path.join(currentPath, segment)
+		path = os.path.join(os.getcwd(), currentPath)
+
+		if not os.path.exists(path):
+			if not fresh:
+				print "building path..."
+			os.makedirs(path)
+
+def hasKey(dictionary, key):
+	try:
+		return True
+	except KeyError:
+		return False
+
+def addUniqueValue(array, value):
+	if not any((value == currentValue) for currentValue in array):
+		array.append(value)
+		return True
+
+	return False
+
+def stripWhiteSpace(string):
+	return "".join(string.split())
+
+def stripQuotes(string):
+	return string[1 : -1]
+	
+def writeLine(f, text, addLine = False, tabs = 0):
+	text = text + "\n"
+	if addLine:
+		text = text + "\n"
+
+	for i in range(0, tabs):
+		text = "\t" + text
+
+	f.write(text)
+
+def newLine(f):
+	f.write("\n")
+
+class Path(object):
+	def __init__(self, root, name):
+		self.root = root
+		self.name = name
+
+	def getH(self, addPath = False):
+		return self.makeName(".h", addPath)
+
+	def getM(self, addPath = False):
+		return self.makeName(".m", addPath)
+
+	def makeName(self, extension, addPath):
+		name = self.name + extension
+
+		if addPath:
+			name = join(self.root, name)
+			call(["touch", name])
+
+		return name
+
+class Method(object):
+	def __init__(self, returnType, name):
+		self.returnType = returnType
+		self.name = name
+
+	def writeInterface(self, f):
+		writeLine(f, self.getDeclaration() + ";")
+
+	def writeImplementation(self, f):
+		writeLine(f, self.getDeclaration())
+		writeLine(f, "{")
+		writeLine(f, "return {0};".format(self.returnType.getImplementation()), tabs = 1)
+		writeLine(f, "}", True)
+
+	def getDeclaration(self):
+		return "+ {0}{1}".format(self.returnType, self.name)
+
+class ReturnType(object):
+	def __init__(self, returnType, returnValue, isObject = True):
+		self.type = returnType
+		self.returnValue = returnValue
+		self.isObject = isObject
+
+	def getImplementation(self):
+		return self.returnValue
+
+	def __str__(self):
+		return "({0}{1})".format(self.type, (" *" if self.isObject else ""))
+
+def parseConfig():
+	print "parsing config file..."
+
+	results = {}
+
+	with open("config.py") as f:
+		for line in f:
+			line = line.rstrip()
+
+			values = line.split(" = ")
+			if not len(values) == 2:
+				continue
+
+			key = values[0]
+			value = stripQuotes(stripWhiteSpace(values[1]))
+			results[key] = value
+
+
+	return results
+
+def parseStrings():
+	languages = Languages()
+
+	for root, dirs, files in os.walk(getStringsDir()):
+		for f in files:
+			path = join(root, f)
+
+			if "lproj" not in path:
+				continue
+
+			fileName = os.path.dirname(path)
+			fileName = os.path.basename(fileName)
+
+			language = Language(fileName)
+			languages.add(language)
+
+			with open(path) as f:
+				for line in f:
+					line = line.rstrip()
+
+					if " = " in line:
+						line = line.replace(" = ", "=")
+
+					if "=" in line:
+						components = line.split("=")
+
+						key = components[0]
+						value = components[1]
+
+						if value.endswith(";"):
+							value = value.replace(";", "")
+
+						key = key[ 1 : -1 ] 
+						value = value[ 1 : -1 ]
+
+						language.addValues(key, value)
+
+	return languages
+
+LOCALIZED_DIR_REGEX = re.compile(r"((.*?)([\w]{2}[.]lproj)(.*))")
+IMAGE_FILE_REGEX = re.compile(r"(([\d\w]+ /\* )([\w\d-]{0,}(@2x){0,1}.png)(.)+)")
+
+def regexMatch(match):
+	return match.group(3)
+
+def parseProjectFile():
+	print "parsing project file..."
+
+	supportedLanguages = []
+	images = Images()
+
+	results = { "languages" : supportedLanguages, "images" : images }
+
+	path = join(getProjectName(), "project.pbxproj")
+	plist = join("lproj", "InfoPlist.strings")
+
+	with open(path) as f:
+		for line in f:
+			line = line.rstrip()
+
+			if plist in line:
+				fileName = stripWhiteSpace(LOCALIZED_DIR_REGEX.sub(regexMatch, line))
+				
+				addUniqueValue(supportedLanguages, fileName)
+
+			if ".png" in line:
+				imageName = stripWhiteSpace(IMAGE_FILE_REGEX.sub(regexMatch, line).rstrip())
+				images.addImage(imageName)
+
+	return results
+
+EXTENSION = ".png"
+HI_RES = "@2x"
+IPHONE_5 = "-568h"
+
+def getBaseName(image):
+	image = image.replace(EXTENSION, "")
+	image = image.replace(HI_RES, "")
+	image = image.replace(IPHONE_5, "")
+
+	return image
+
+class Images(object):
+	def __init__(self):
+		self.images = []
+
+	def addImage(self, image):
+		if image is None:
+			return
+
+		hasImageItem = False
+		baseName = getBaseName(image)
+
+		imageItem = self.getItem(baseName)
+		if imageItem is None:
+			imageItem = Image(baseName, image)
+			self.images.append(imageItem)
+		else:
+			imageItem.addImage(image)
+
+	def getAll(self):
+		return self.images
+
+	def get(self, index):
+		return self.images[index]
+
+	def getItem(self, baseName):
+		for item in self.images:
+			if item.getBaseName() == baseName:
+				return item
+
+		return None
+
+	def __repr__(self):
+		return str(self)
+
+	def __str__(self):
+		text = "Images: {0}\n".format(len(self.images))
+		for image in self.images:
+			text = "{0}  {1}\n".format(text, image)
+
+		return text
+
+class Image(object):
+	def __init__(self, baseName, image):
+		self.baseName = baseName
+		self.variants = []
+		self.variants.append(image)
+
+		self.hasIphone5Image = (IPHONE_5 in image)
+
+	def getBaseName(self):
+		return self.baseName
+
+	def addImage(self, image):
+		if image is None or image in self.variants:
+			return False
+
+		if IPHONE_5 in image:
+			self.hasIphone5Image = True
+
+		self.variants.append(image)
+		return True
+
+	def containsIphone5Image(self):
+		return self.hasIphone5Image
+
+	def __repr__(self):
+		return str(self)
+
+	def __str__(self):
+		text = "ImageItem ({0}): \n".format(self.baseName)
+		for image in self.variants:
+			text = text + "    image: {0}\n".format(image)
+
+		return text
+
+class Languages(object):
+	def __init__(self):
+		self.languages = []
+
+	def add(self, language):
+		self.languages.append(language)
+
+	def get(self, key):
+		if len(self.languages) > 0:
+			for language in self.languages:
+				if key in language.getFileName():
+					return language
+
+		return None
+
+class Language(object):
+	def __init__(self, fileName):
+		self.fileName = fileName
+		self.results = {}
+
+	def getFileName(self):
+		return self.fileName
+
+	def addValues(self, key, value):
+		self.results[key] = value
+
+	def getResults(self):
+		keys = sorted(self.results.iterkeys())
+		results = []
+
+		for key in keys:
+			results.append({ "key" : key , "value" : self.results[key]})
+
+		return results
+
+class FileItem(object):
+	def __init__(self, name):
+		prefix = getFilePrefix()
+		self.name = (name if prefix is None else prefix + name)
+		self.path = Path(self.getRoot(), self.name)
+
+	def getName(self):
+		return self.name
+
+	def getPath(self):
+		return self.path
+
+	def wantsExtenstion(self):
+		return False
+
+	# protected methods. must be over written
+	def getRoot(self):
+		pass
+
+	def writeStaticMethods(self, f):
+		pass
+
+	def writeExtension(self, f):
+		pass
+
+	def getMethods(self):
+		pass
+
+class StringItem(FileItem):
+	def __init__(self, language):
+		FileItem.__init__(self, "LocalizedString")
+		self.language = language
+
+	def getRoot(self):
+		return getStringsDir()
+
+	def getMethods(self):
+        print "are you here?"
+		methods = []
+
+		for dictionary in self.language:
+            value = dictionary["value"]
+            print "value is " + value
+            if "%@" in value:
+                print "found format"
+                exit(3)
+
+			returnType = ReturnType("NSString", "NSLocalizedString(@\"{0}\", nil)".format(dictionary["value"]))
+			method = Method(returnType, dictionary["key"])
+			methods.append(method)
+
+		return methods
+
+class ImageItem(FileItem):
+	def __init__(self, images):
+		FileItem.__init__(self, "Image")
+		self.images = images
+
+	def getRoot(self):
+		return getImagesDir()
+
+	def writeStaticMethods(self, f):
+		methodTop = """
+struct ImageStruct
+{
+    __unsafe_unretained NSString *name;
+    BOOL hasIphone5Image;
+};
+
+typedef struct ImageStruct Images;
+
+static int imageLen = 1;
+static Images image_cache[] = 
+{
+"""
+		writeLine(f, methodTop)
+		
+		count = len(self.images.getAll())
+
+		for i in range(0, count):
+			image = self.images.get(i)
+
+			text = "@\"{0}\", {1}".format(image.getBaseName(), ("true" if image.containsIphone5Image() else "false"))
+			text = "{ " + text + " }"
+
+			if i < (count - 1):
+				text = text + ","
+
+			writeLine(f, text, tabs = 1)
+
+		methodBottom = """
+};
+
+static NSString *get_image_name(NSString *name)
+{
+	for(int i = 0; i < imageLen; i++)
+	{
+		Images image = image_cache[i];
+		if([image.name isEqualToString:name])
+		{
+			NSString *imageName = (image.hasIphone5Image ? [name stringByAppendingString:@"-568h"] : name);
+			return imageName;
+		}
+	}
+
+	return nil;
+}
+		"""
+
+		writeLine(f, methodBottom, True)
+
+	def getMethods(self):
+		methods = []
+
+		for image in self.images.getAll():
+			print image
+
+		return methods
+
+FOUNDATION = "#import <Foundation/Foundation.h>"
+END = "@end"
+AUTO_GENERATED_TEXT =  "/* AUTO-GENERATED FILE!!! MODIFICATIONS WILL BE OVERWRITTEN */"
+
+def appendAutoGenerate(f):
+	writeLine(f, AUTO_GENERATED_TEXT, True)
+
+def buildPathForLanguage(dirMethod, language, fileName):
+	path = join(dirMethod(), language)
+	buildPath(path)
+
+	stringPath = join(path, fileName)
+	call(["touch", stringPath])
+
+
+class FileManager(object):
+	def __init__(self):
+		pass
+
+	def hasConfig(self):
+		return os.path.isfile("config.py")
+
+	def buildConfig(self):
+		print "building config.py..."
+
+		call(["touch", "config.py"])
+
+	def buildRes(self):
+		print "building res dir..."
+
+		buildPath(getStringsDir())
+		buildPath(getLocalizationDir())
+		buildPath(getImagesDir())
+
+	def addLanguages(self, languages, translations):
+        print "adding languages"
+		for language in languages:
+			buildPathForLanguage(getStringsDir, language, "strings.h")
+			buildPathForLanguage(getLocalizationDir, language, "Localizable.strings")
+
+		english = translations.get("en")
+		if english is not None:
+			self.makeFile(StringItem(english.getResults()))
+
+	def addImages(self, images):
+		buildPath(getImagesDir())
+		self.makeFile(ImageItem(images))
+
+	def makeFile(self, fileItem):
+		path = fileItem.getPath()
+
+		print "writing file {0}...".format(path.getH())
+
+		with open(path.getH(True), "w+") as f:
+			appendAutoGenerate(f)
+
+			writeLine(f, FOUNDATION, True)
+			writeLine(f, "@interface {0} : NSObject".format(fileItem.getName()), True)
+
+			for method in fileItem.getMethods():
+				method.writeInterface(f)
+
+			newLine(f)
+			writeLine(f, END)
+
+		print "writing file {0}...".format(path.getM())
+
+		with open(path.getM(True), "w+") as f:
+			appendAutoGenerate(f)
+
+			writeLine(f, "#import \"{0}\"".format(path.getH()), True)
+
+			fileItem.writeStaticMethods(f)
+
+			if fileItem.wantsExtenstion():
+				writeLine(f, "@interface {0}()".format(fileItem.getName()), True)
+				fileItem.writeExtension(f)
+				newLine(f)
+				writeLine(f, END, True)
+
+			writeLine(f, "@implementation {0}".format(fileItem.getName()), True)
+
+			for method in fileItem.getMethods():
+				method.writeImplementation(f)
+
+			writeLine(f, END)
+			
+fileManager = FileManager()
+if not fileManager.hasConfig():
+	print "no config found..."
+	fileManager.buildConfig()
+	print "fill out and build project again..."
+	sys.exit()
+
+config = parseConfig()
+
+if len(config) == 0 or "project" not in config:
+	print "config file is missing or unfinished..."
+	sys.exit()
+
+updateConfig(config)
+fileManager.buildRes()
+
+xcodeResult = parseProjectFile()
+languages = xcodeResult["languages"]
+images = xcodeResult["images"]
+
+translations = parseStrings()
+
+fileManager.addLanguages(languages, translations)
+fileManager.addImages(images)
+

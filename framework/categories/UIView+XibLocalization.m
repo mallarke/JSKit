@@ -8,8 +8,6 @@
 
 #import "UIView+XibLocalization.h"
 
-#import "NSString+JSKitStringMethods.h"
-
 @interface UIView (XibLocalizationCustomMethods)
 
 - (id)initWithSwizzleCoder:(NSCoder *)coder;
@@ -85,12 +83,13 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         @try
         {
-            string = [[NSString class] performSelector:selector];
+            Class class = NSClassFromString(@"LocalizedString");
+            string = [class performSelector:selector];
         }
         @catch (NSException *e)
         {
             NSString *reason = [NSString stringWithFormat:@"There was no valid mapping for %@ in your strings.h", selectorName];
-            @throw [[JSMissingResourceException alloc] initWithName:@"Missing resource" reason:reason userInfo:nil];
+            @throw [[JSException alloc] initWithName:@"Missing resource" reason:reason userInfo:nil];
         }
 #pragma clang diagnostic pop
     }

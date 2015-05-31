@@ -21,3 +21,9 @@ DerivedData
 # framework
 Products
 
+# Image reports
+imageResults/
+
+# Localization reports
+localizedResults/
+*.pyc
